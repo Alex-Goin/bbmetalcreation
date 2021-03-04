@@ -1,9 +1,9 @@
 <template>
-  <Nuxt />
+	<Nuxt />
 </template>
 
 <style>
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 </style>

@@ -40,17 +40,42 @@ export default {
       {
         rel: 'stylesheet',
         href:
-          'https://fonts.googleapis.com/css2?family=Parisienne&family=Russo+One&family=Righteous&family=Anton&family=Montserrat&family=Shippori+Mincho+B1&display=swap',
+          'https://fonts.googleapis.com/css2?family=Raleway&family=Parisienne&family=Russo+One&family=Righteous&family=Anton&family=Montserrat&family=Shippori+Mincho+B1&display=swap',
       },
+      /* BULMA CAROUSEL */
+      {
+        rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
+      }, {
+        rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css"
+      }
     ],
-    script: [],
+    script: [
+      {
+        src: "https://code.jquery.com/jquery-3.6.0.min.js",
+        type: "text/javascript",
+        integrity: "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=",
+        crossorigin: "anonymous",
+        body: true
+      },
+      {
+        src: "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js",
+        type: "text/javascript",
+        body: true
+      }, {
+        src: "https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js",
+        type: "text/javascript",
+        body: true
+      }
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [ '@splidejs/splide/dist/css/themes/splide-default.min.css' ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/vue-splide.js' }
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -65,7 +90,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
-    '@nuxt/content',
+    '@nuxt/content'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -82,5 +107,7 @@ export default {
   content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: [ 'vue-splide' ]
+  },
 }
