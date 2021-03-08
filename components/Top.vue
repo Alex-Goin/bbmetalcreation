@@ -1,76 +1,74 @@
 <template>
-	<nav class="navbar has-background-light is-fixed-top py-3" id="top">
-		<div class="container">
-			<div class="navbar-brand">
-				<a class="navbar-item" href="/">
-					<span
-						class="title has-text-weight-light is-uppercase has-text-dark nav_title"
-						>B.B. Metal Creation
-					</span>
-				</a>
+  <nav class="navbar has-background-grey-lighter block" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href=".">
+          <span class="icon-text is-size-3 ml-3">
+            <span class="icon">
+              <i class="fas fa-tools"></i>
+            </span>
+            <span class="ml-4 is-uppercase has-text-weight-light is-size-2">
+              {{ nav.brand }}
+            </span>
+          </span>
+        </a>
 
-				<a
-					role="button is-large"
-					class="navbar-burger mx-0 my-0"
-					aria-label="menu"
-					aria-expanded="false"
-					data-target="navbarBasicExample"
-					@click="show_nav = !show_nav"
-				>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-				</a>
-			</div>
-			<div
-				class="navbar-menu"
-				id="navbarBasicExample"
-				:class="{ 'is-active': show_nav }"
-			>
-				<div class="navbar-end">
-					<div class="navbar-item">
-						<div class="buttons">
-							<a href="/" class="button is-info is-medium"
-								>Accueil</a
-							>
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+          @click="shownav = !shownav"
+          :class="{ 'is-active': shownav }"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
 
-							<a
-								href="#prestation-soudure"
-								class="button is-info is-medium"
-								>Prestation soudure</a
-							>
-
-							<a href="/" class="button is-info is-medium"
-								>Métallerie</a
-							>
-
-							<a href="/" class="button is-info is-medium"
-								>Mobilier Acier</a
-							>
-							<a href="/" class="button is-success is-medium"
-								>Contact</a
-							>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
+      <div
+        id="navbarBasicExample"
+        class="navbar-menu"
+        :class="{ 'is-active': shownav }"
+      >
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-dark is-size-5" :href="nav.links[0].url"> {{ nav.links[0].name }} </a>
+              <a class="button is-dark is-size-5" :href="nav.links[1].url"> {{ nav.links[1].name }} </a>
+              <a class="button is-dark is-size-5" :href="nav.links[2].url"> {{ nav.links[2].name }} </a>
+              <a class="button is-dark is-size-5" :href="nav.links[3].url"> {{ nav.links[3].name }} </a>
+              <a class="button is-size-5 is-success" :href="nav.links[4].url"> {{ nav.links[4].name }} </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
 export default {
-	props: ['id'],
-	data() {
-		return {
-			show_nav: false,
-		}
-	},
+  data() {
+    return {
+      shownav: false,
+    }
+  },
+  computed: {
+    nav() {
+      return this.$store.state.navbar
+    },
+  },
 }
 </script>
 
 <style>
 .nav_title {
-	font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', sans-serif;
+}
+.mysvg {
+  font-size: 3em;
 }
 </style>
