@@ -1,46 +1,74 @@
 <template>
-  <section class="hero is-fullheight" :id="id">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <p class="block">
-          <span class="main_title has-text-weight-medium"
-            >B.B Metal Creation</span
-          >
-        </p>
-        <p class="block">
-          <a href="#5" class="button is-success is-light is-large py-5 px-6">
+  <nav class="navbar has-background-grey-lighter block" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href=".">
+          <span class="icon-text is-size-3 ml-3">
             <span class="icon">
-              <i class="fas fa-id-card is-size-3"></i>
+              <i class="fas fa-tools"></i>
             </span>
-            <span>Contact</span>
-          </a>
-        </p>
-      </div>
-    </div>
-    <div class="hero-footer">
-      <div class="container has-text-centered">
+            <span class="ml-4 is-uppercase has-text-weight-light is-size-2">
+              {{ nav.brand }}
+            </span>
+          </span>
+        </a>
+
         <a
-          class="button is-info is-light is-large my-6 px-6"
-          :href="`#${id + 1}`"
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+          @click="shownav = !shownav"
+          :class="{ 'is-active': shownav }"
         >
-          <i class="fas fa-arrow-down" />
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
         </a>
       </div>
+
+      <div
+        id="navbarBasicExample"
+        class="navbar-menu"
+        :class="{ 'is-active': shownav }"
+      >
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-dark is-size-5" :href="nav.links[0].url"> {{ nav.links[0].name }} </a>
+              <a class="button is-dark is-size-5" :href="nav.links[1].url"> {{ nav.links[1].name }} </a>
+              <a class="button is-dark is-size-5" :href="nav.links[2].url"> {{ nav.links[2].name }} </a>
+              <a class="button is-dark is-size-5" :href="nav.links[3].url"> {{ nav.links[3].name }} </a>
+              <a class="button is-size-5 is-success" :href="nav.links[4].url"> {{ nav.links[4].name }} </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </nav>
 </template>
 
 <script>
 export default {
-  props: ['id'],
+  data() {
+    return {
+      shownav: false,
+    }
+  },
+  computed: {
+    nav() {
+      return this.$store.state.navbar
+    },
+  },
 }
 </script>
 
 <style>
-.main_title {
-  font-size: 10vw;
-  word-spacing: 3vw;
-  letter-spacing: 1vw;
-  font-family: 'Shippori Mincho B1', sans-serif;
+.nav_title {
+  font-family: 'Raleway', sans-serif;
+}
+.mysvg {
+  font-size: 3em;
 }
 </style>

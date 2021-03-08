@@ -1,39 +1,80 @@
 export const state = () => ({
-  header: {
-    title: 'Mobilier Design & Urbain',
-    description:
-      'Riche de ma longue expérience qui touche tout ce qui est de la métallerie, du pliage à la soudure, je vous propose mes services pour vos projets.',
-    actions: [
-      'Réalisations de mobiliers designs',
-      'Découpes de tôles avec motifs',
-      'Mobiliers urbains',
-      'Chaudronnerie',
-      'Toutes fabrications, Acier, Aluminium ou Inox',
-      'Thermolaquage pour une peinture garantie',
-    ],
-  },
-  footer: {
-    address: '5 bis Avenue de Plaisance 81290 St Affrique Les Montagnes',
-    phone: '06 79 04 36 02',
-    mail: 'mailto:bbmetalcreation@gmail.com',
-    map:
-      'https://www.google.fr/maps/place/Chemin+de+Peyre+Ficade,+81290+Viviers-l%C3%A8s-Montagnes/@43.5629784,2.1850561,17z/data=!3m1!4b1!4m2!3m1!1s0x12ae13a0a6705c01:0x92d639164748edb9',
-  },
-  informations: {
-    design: {
-      title: 'Mobilier Design',
-      infos:
-        "Créations de mobiliers et d'objets design, pour l'intérieur ou l'extérieur: table basse, banc, tôle découpée laser, décoration murale, tête de lit, etc. Possibilité de créer en acier, en inox, ou aluminium. Fabrication sur mesure, peinture au choix.",
+    navbar: {
+        brand: 'BB Metal Creation',
+        links: [
+            { name: 'Accueil', url: '/' },
+            { name: 'Chaudronnerie', url: '/chaudronnerie' },
+            { name: 'Prestation soudure', url: '/soudure' },
+            { name: 'Mobilier métal', url: '/mobilier' },
+            { name: 'Contact', url: '/contact' }
+        ]
     },
-    urbain: {
-      title: 'Mobilier Urbain',
-      infos:
-        "Fabrications de mobiliers urbain de style cache conteneur, banc public, abris casquette, rembarde de ville, arche entrée de commune, corbeille, grille d'arbres ... à partir d'un modèle ou d'une idée bien précise, mobilier personnalisable ainsi que la couleur.",
+    header: {
+        title: 'BB Metal Creation',
+        description: 'Riche de ma longue expérience qui touche tout ce qui est de la métallerie, du pliage à la soudure, je vous propose mes services pour vos projets.',
+        actions: [
+            'Réalisations de mobiliers designs',
+            'Découpes de tôles avec motifs',
+            'Mobiliers urbains',
+            'Chaudronnerie',
+            'Toutes fabrications, Acier, Aluminium ou Inox',
+            'Thermolaquage pour une peinture garantie',
+        ],
+        partenaires: [
+            {
+                name: 'Mécalaser',
+                url: 'https://www.mecalaser.fr/',
+                logo: require('~/assets/logos_partenaires/Logo-meca-laser.png')
+            },
+            {
+                name: 'Couleur d\'Oc',
+                url: 'http://couleursdoc.fr/',
+                logo: require('~/assets/logos_partenaires/logo-couleur-doc.png')
+            },
+            {
+                name: 'Codina & Fils',
+                'url': 'https://www.codinaproduitsmetallurgiques.fr/',
+                logo: require('~/assets/logos_partenaires/logo-codina.svg')
+            },
+            {
+                name: 'Prolians Baurès Aussilon',
+                url: 'https://www.pagesjaunes.fr/pros/05686874',
+                logo: require('~/assets/logos_partenaires/logo_pagesjaunes.png')
+            }
+        ]
+
     },
-    metal: {
-      title: 'Métallerie',
-      infos:
-        "Réalisations de Métalleries diverses: clôture piscine & maison, brise vue, cache conteneur, portillon, garde corps, plancha inox, barbecue, hotte, etc. Ainsi que d'autres créations selon votre projet...",
+    contact: {
+        address: '5 bis Avenue de Plaisance 81290 St Affrique Les Montagnes',
+        phone: '06 79 04 36 02',
+        mail: 'bbmetalcreation@gmail.com',
+        map: 'https://www.google.fr/maps/place/Chemin+de+Peyre+Ficade,+81290+Viviers-l%C3%A8s-Montagnes/@43.5629784,2.1850561,17z/data=!3m1!4b1!4m2!3m1!1s0x12ae13a0a6705c01:0x92d639164748edb9',
+        horaires: 'Du Lundi au Vendredi de 8h à 18h'
     },
-  },
+    soudure: {
+        title: 'Prestation soudure',
+        infos: "Chaudronnier soudeur avec 20 années d'expérience, MIG, TIG, ARC, intervention sur site ou en atelier, professionnel ou particulier.",
+        imgs: [
+            require('~/assets/soudure/max-larochelle-_RhL0DUidms-unsplash.jpg'),
+            require('~/assets/soudure/max-larochelle-c-vWdiICscA-unsplash.jpg'),
+            require('~/assets/soudure/max-larochelle-QzP1GcDOSC8-unsplash.jpg'),
+            require('~/assets/soudure/max-larochelle-tD-SDlQxfsY-unsplash.jpg'),
+            require('~/assets/soudure/rob-lambert-9Q_pLLP_jmA-unsplash.jpg'),
+            require('~/assets/soudure/tig.png'),
+            require('~/assets/soudure/watts-roofing-supplies-Y71qSiW8e8U-unsplash.jpg'),
+        ]
+    },
+    mobilier: {
+        title: 'Mobilier Métal',
+        infos: '...',
+        imgs: [
+            require('~/assets/moblier/FB_IMG_1614847833362.jpg'),
+            require('~/assets/moblier/FB_IMG_1614847883275.jpg'),
+            require('~/assets/moblier/FB_IMG_1614847989219.jpg'),
+            require('~/assets/moblier/IMG_20210305_113056.jpg'),
+            require('~/assets/moblier/Screenshot_20210304-095912_Facebook.jpg'),
+            require('~/assets/moblier/Screenshot_20210304-100120_Facebook.jpg'),
+            require('~/assets/moblier/Screenshot_20210305-134040_Gallery.jpg'),
+        ]
+    }
 })
