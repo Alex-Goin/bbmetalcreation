@@ -36,11 +36,11 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-dark is-size-5" :href="nav.links[0].url"> {{ nav.links[0].name }} </a>
-              <a class="button is-dark is-size-5" :href="nav.links[1].url"> {{ nav.links[1].name }} </a>
-              <a class="button is-dark is-size-5" :href="nav.links[2].url"> {{ nav.links[2].name }} </a>
-              <a class="button is-dark is-size-5" :href="nav.links[3].url"> {{ nav.links[3].name }} </a>
-              <a class="button is-size-5 is-success" :href="nav.links[4].url"> {{ nav.links[4].name }} </a>
+              <NuxtLink class="button is-dark is-size-5" :to="nav.links[0].url"> {{ nav.links[0].name }} </NuxtLink>
+              <NuxtLink class="button is-dark is-size-5" :to="nav.links[1].url"> {{ nav.links[1].name }} </NuxtLink>
+              <NuxtLink class="button is-dark is-size-5" :to="nav.links[2].url"> {{ nav.links[2].name }} </NuxtLink>
+              <NuxtLink class="button is-dark is-size-5" :to="nav.links[3].url"> {{ nav.links[3].name }} </NuxtLink>
+              <NuxtLink class="button is-size-5 is-success" :to="nav.links[4].url"> {{ nav.links[4].name }} </NuxtLink>
             </div>
           </div>
         </div>
