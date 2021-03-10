@@ -1,5 +1,5 @@
 const isDev = process.env.NODE_ENV !== 'production'
-
+console.log('isDev ', process.env.NODE_ENV);
 export default {
     // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
     ssr: true,
@@ -95,7 +95,7 @@ export default {
     ],
 
     env: {
-        baseUrl: (isDev ? process.env.BASE_URL || 'http://localhost:3000' : process.env.BASE_URL || 'https://bbmetalcreationtest.netlify.app')
+        baseUrl: (isDev === 'development' ? process.env.BASE_URL || 'http://localhost:3000' : process.env.BASE_URL || 'https://bbmetalcreationtest.netlify.app')
     },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
