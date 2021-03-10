@@ -1,3 +1,5 @@
+const isDev = process.env.NODE_ENV !== 'production'
+
 export default {
     // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
     ssr: true,
@@ -92,8 +94,14 @@ export default {
         { path: '/api/contact', handler: '~/api/contact' }
     ],
 
+    env: {
+        baseUrl: (isDev ? process.env.BASE_URL || 'http://localhost:3000' : process.env.BASE_URL || 'https://bbmetalcreationtest.netlify.app')
+    },
+
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
-    axios: {},
+    axios: {
+        baseURL: process.env.baseUrl
+    },
 
     // PWA module configuration: https://go.nuxtjs.dev/pwa
     pwa: {
