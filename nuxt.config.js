@@ -1,6 +1,6 @@
 export default {
     // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-    ssr: false,
+    ssr: true,
 
     target: 'static',
 
@@ -13,7 +13,7 @@ export default {
             {
                 hid: 'description',
                 name: 'description',
-                content: "B.B. Metal Creation - métallerie, soudage, pliage sur Castres, Toulouse, Montauban, Cahors, l'Occitanie.",
+                content: "BB Metal Creation - métallerie, soudage, pliage sur Castres, Toulouse, Montauban, Cahors, l'Occitanie."
             },
         ],
         link: [
@@ -40,6 +40,7 @@ export default {
             }
         ],
         script: [
+
         ],
     },
 
@@ -49,7 +50,8 @@ export default {
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
-        {src:'~/plugins/swiper.js'}
+        { src: '~/plugins/swiper.js' },
+        { src: '~/plugins/validator' }
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -65,7 +67,29 @@ export default {
         // https://go.nuxtjs.dev/pwa
         '@nuxtjs/pwa',
         // https://go.nuxtjs.dev/content
-        '@nuxt/content'
+        '@nuxt/content',
+        '@nuxtjs/recaptcha',
+        '@nuxtjs/toast',
+    ],
+
+    publicRuntimeConfig: {
+        recaptcha: {
+            hideBadge: false,
+            siteKey: process.env.RECAPTCHA_SITE_KEY,
+            version: 3,
+            size: 'normal'
+        }
+    },
+
+    privateRuntimeConfig: {
+        recaptchaSecretKey: process.env.RECAPTCHA_SECRET_KEY,
+        g_user: process.env.G_USER,
+        g_pw: process.env.G_PW
+    },
+
+    serverMiddleware: [
+        { path: '/api/recaptcha', handler: '~/api/recaptcha' },
+        { path: '/api/contact', handler: '~/api/contact' }
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -76,6 +100,11 @@ export default {
         manifest: {
             lang: 'en',
         },
+    },
+
+    toast: {
+        position: 'top-center',
+        duration: '2000'
     },
 
     // Content module configuration: https://go.nuxtjs.dev/config-content

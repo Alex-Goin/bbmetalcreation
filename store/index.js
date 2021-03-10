@@ -11,14 +11,14 @@ export const state = () => ({
     },
     header: {
         title: 'BB Metal Creation',
-        description: 'Riche de ma longue expérience qui touche tout ce qui est de la métallerie, du pliage à la soudure, je vous propose mes services pour vos projets.',
+        description: 'Riche de ma longue expérience en métallerie, pliage & soudure, je vous propose mes services pour vos projets.',
         actions: [
-            'Réalisations de mobiliers designs',
-            'Découpes de tôles avec motifs',
-            'Mobiliers urbains',
+            'Création de mobilier métal',
             'Chaudronnerie',
-            'Toutes fabrications, Acier, Aluminium ou Inox',
-            'Thermolaquage pour une peinture garantie',
+            'Métallerie',
+            'Prestation soudure particulier et professionnel',
+            'Toutes fabrications, acier, aluminium, inox',
+            'Peinture par thermolaquage.',
         ],
         partenaires: [
             {
@@ -53,28 +53,14 @@ export const state = () => ({
     },
     soudure: {
         title: 'Prestation soudure',
-        infos: "Chaudronnier soudeur avec 20 années d'expérience, MIG, TIG, ARC, intervention sur site ou en atelier, professionnel ou particulier.",
-        imgs: [
-            require('~/assets/soudure/max-larochelle-_RhL0DUidms-unsplash.jpg'),
-            require('~/assets/soudure/max-larochelle-c-vWdiICscA-unsplash.jpg'),
-            require('~/assets/soudure/max-larochelle-QzP1GcDOSC8-unsplash.jpg'),
-            require('~/assets/soudure/max-larochelle-tD-SDlQxfsY-unsplash.jpg'),
-            require('~/assets/soudure/rob-lambert-9Q_pLLP_jmA-unsplash.jpg'),
-            require('~/assets/soudure/tig.png'),
-            require('~/assets/soudure/watts-roofing-supplies-Y71qSiW8e8U-unsplash.jpg'),
-        ]
+        infos: "Chaudronnier soudeur avec 20 années d'expérience, MIG, TIG, ARC, intervention sur site ou en atelier, professionnel ou particulier."
     },
     mobilier: {
         title: 'Mobilier Métal',
-        infos: '...',
-        imgs: [
-            require('~/assets/moblier/FB_IMG_1614847833362.jpg'),
-            require('~/assets/moblier/FB_IMG_1614847883275.jpg'),
-            require('~/assets/moblier/FB_IMG_1614847989219.jpg'),
-            require('~/assets/moblier/IMG_20210305_113056.jpg'),
-            require('~/assets/moblier/Screenshot_20210304-095912_Facebook.jpg'),
-            require('~/assets/moblier/Screenshot_20210304-100120_Facebook.jpg'),
-            require('~/assets/moblier/Screenshot_20210305-134040_Gallery.jpg'),
-        ]
+        infos: 'Création de mobilier Métal, Bois & Acier. Une idée, un concept: je réalise. Table, chevet, banc, étagère, ...'
+    },
+    chaudronnerie: {
+        title: 'Chaudronnerie',
+        infos: '...'
     }
 })

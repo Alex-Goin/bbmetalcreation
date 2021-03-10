@@ -7,7 +7,7 @@
             <span class="icon">
               <i class="fas fa-tools"></i>
             </span>
-            <span class="ml-4 is-uppercase has-text-weight-light is-size-2">
+            <span class="ml-4 is-uppercase has-text-weight-light is-size-2 is-hidden-mobile">
               {{ nav.brand }}
             </span>
           </span>

@@ -1,13 +1,19 @@
 <template>
-  <h1>page contact</h1>
+  <div class="container">
+    <div class="columns">
+      <div class="column is-two-thirds">
+        <Form />
+      </div>
+      <div class="column">
+        <Contact />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style>
-
 </style>
