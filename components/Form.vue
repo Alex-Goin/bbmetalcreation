@@ -146,11 +146,7 @@ export default {
       this.message = ''
     },
     sendEmail(e) {
-       this.$buefy.toast.open({
-                    message: 'Votre message a bien été envoyé!',
-                    type: 'is-success'
-                })
-     /*  if (this.recaptcha && this.token.length > 0) {
+      if (this.recaptcha && this.token.length > 0) {
         const { userid, templateid, serviceid } = this.$validate({
           nom: this.nom,
           prenom: this.prenom,
@@ -168,13 +164,13 @@ export default {
             prenom: this.prenom,
             email: this.email,
           }
-          
+
           emailjs.send(serviceid, templateid, templateParams, userid).then(
             (result) => {
-               this.$buefy.toast.open({
-                    message: 'Votre message a bien été envoyé!',
-                    type: 'is-success'
-                })
+              this.$buefy.toast.open({
+                message: 'Votre message a bien été envoyé!',
+                type: 'is-success',
+              })
               this.clear()
               console.log('SUCCESS!', result.status, result.text)
             },
@@ -183,7 +179,7 @@ export default {
             }
           )
         }
-      } */
+      }
     },
 
     onError(error) {
