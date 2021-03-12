@@ -2,9 +2,8 @@
   <div class="container">
     <div class="columns">
       <HomeLeft />
-      <!-- <HomeRight /> -->
       <div class="column is-half">
-      <Photos :banners="banners" />
+        <PhotoBuefy :photos="banners" />
       </div>
     </div>
   </div>

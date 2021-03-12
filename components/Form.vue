@@ -1,191 +1,211 @@
 <template>
   <div class="container mx-6">
-      <h1 class="title has-text-centered has-text-weight-light">Envoyez moi un message</h1>
-    <form @submit.prevent="onSubmit">
-      <div class="field">
-        <label class="label">Votre nom</label>
-        <div class="control has-icons-left">
-          <input
-            class="input"
-            type="text"
-            v-model="mail.nom"
+    <div class="block content">
+      <h1 class="title has-text-centered has-text-weight-light">
+        Envoyez moi un message
+      </h1>
+      <strong>Tous les champs sont requis.</strong>
+    </div>
+    <section>
+      <form @submit.prevent="sendEmail">
+        <b-field label="Nom" :type="checkNom ? 'is-success' : 'is-danger'">
+          <b-input
+            minlength="3"
+            v-model="nom"
             placeholder="Entrez votre nom ici"
-            minlength="3"
+            icon="account"
             required
-          />
-          <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
-          </span>
-        </div>
-      </div>
+          >
+          </b-input>
+        </b-field>
 
-      <div class="field">
-        <label class="label">Votre prénom</label>
-        <div class="control has-icons-left has-icons-right">
-          <input
-            class="input"
-            type="text"
-            v-model="mail.prenom"
+        <b-field
+          label="Prénom"
+          :type="checkPrenom ? 'is-success' : 'is-danger'"
+        >
+          <b-input
+            minlength="3"
+            v-model="prenom"
             placeholder="Entrez votre prénom ici"
-            minlength="3"
+            icon="account"
             required
-          />
-          <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
-          </span>
-        </div>
-      </div>
+          >
+          </b-input>
+        </b-field>
 
-      <div class="field">
-        <label class="label">Votre email</label>
-        <div class="control has-icons-left has-icons-right">
-          <input
-            class="input"
+        <b-field label="Email" :type="checkEmail ? 'is-success' : 'is-danger'">
+          <b-input
             type="email"
-            v-model="mail.email"
-            placeholder="Entrez votre adresse email ici"
+            v-model="email"
+            placeholder="Entrez votre adresse mail ici"
+            icon="email"
             required
-          />
-          <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-          </span>
-        </div>
-      </div>
+          >
+          </b-input>
+        </b-field>
 
-      <div class="field">
-        <label class="label">Sujet</label>
-        <div class="control">
-          <div class="select">
-            <select v-model="mail.sujet">
-              <option value="" selected disabled hidden>
-                Choisissez un sujet
-              </option>
-              <option>Chaudronnerie</option>
-              <option>Prestation soudure</option>
-              <option>Mobilier métal</option>
-              <option>Autre</option>
-            </select>
-          </div>
-        </div>
-      </div>
+        <b-field label="Sujet" :type="checkSujet ? 'is-success' : 'is-danger'">
+          <b-select v-model="sujet" required>
+            <option value="" hidden>Choisissez un sujet</option>
+            <option value="chaudronnerie">Chaudronnerie</option>
+            <option value="prestation soudure">Prestation soudure</option>
+            <option value="mobilier métal">Mobilier métal</option>
+            <option value="autre">Autre</option>
+          </b-select>
+        </b-field>
 
-      <div class="field">
-        <label class="label">Message</label>
-        <div class="control">
-          <textarea
-            class="textarea"
-            v-model="mail.message"
+        <b-field
+          label="Message"
+          :type="checkMessage ? 'is-success' : 'is-danger'"
+        >
+          <b-input
+            type="textarea"
+            minlength="10"
+            maxlength="1000"
+            v-model="message"
             placeholder="Entrez votre message ici"
             required
-          ></textarea>
-        </div>
-      </div>
+          >
+          </b-input>
+        </b-field>
 
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-link">Envoyer</button>
+        <div class="block">
+          <recaptcha
+            @error="onError"
+            @success="onSuccess"
+            @expired="onExpired"
+            class="is-radiusless"
+          />
         </div>
-        <div class="control">
-          <button class="button is-link is-light" @click="clear">
-            Annuler
-          </button>
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link is-radiusless">Envoyer</button>
+          </div>
+          <div class="control">
+            <button
+              class="button is-link is-light is-radiusless"
+              @click="clear"
+            >
+              Annuler
+            </button>
+          </div>
         </div>
-        <strong>Tous les champs sont requis.</strong>
-      </div>
-    </form>
+      </form>
+    </section>
   </div>
 </template>
 
 <script>
-import validator from '~/plugins/validator'
+import emailjs from 'emailjs-com'
+
 export default {
+  computed: {
+    mailpro() {
+      return this.$store.state.contact.mail
+    },
+  },
   data() {
     return {
-      mail: {
-        nom: '',
-        prenom: '',
-        email: '',
-        sujet: '',
-        message: '',
-      },
-      sent: false,
+      nom: '',
+      prenom: '',
+      email: '',
+      sujet: '',
+      message: '',
+      token: '',
+      recaptcha: false,
+      checkNom: false,
+      checkPrenom: false,
+      checkEmail: false,
+      checkSujet: false,
+      checkMessage: false,
     }
   },
-  async mounted() {
-    try {
-      await this.$recaptcha.init()
-    } catch (e) {
-      console.error(e)
-    }
+  watch: {
+    nom: function (n) {
+      this.checkNom = this.$isLength(n, 3)
+    },
+    prenom: function (n) {
+      this.checkPrenom = this.$isLength(n, 3)
+    },
+    email: function (n) {
+      this.checkEmail = this.$isEmail(n)
+    },
+    sujet: function (n) {
+      this.checkSujet = !this.$isEmpty(n)
+    },
+    message: function (n) {
+      this.checkMessage = this.$isLength(n, 10)
+    },
   },
   methods: {
     clear() {
-      this.mail = {
-        nom: '',
-        prenom: '',
-        email: '',
-        sujet: '',
-        message: '',
-      }
-      this.sent = false
+      this.nom = ''
+      this.prenom = ''
+      this.email = ''
+      this.sujet = ''
+      this.message = ''
     },
-
-    validate({ nom, prenom, email, sujet, message }) {
-      let messages = []
-      if (!validator.isEmail(email)) messages.push('Email invalide.')
-      if (!validator.isLength(nom, { min: 3 })) messages.push('Nom invalide.')
-      if (!validator.isLength(prenom, { min: 3 }))
-        messages.push('Prénom invalide.')
-      if (validator.isEmpty(sujet)) messages.push('Choisissez un sujet.')
-      if (validator.isEmpty(message) || !validator.isLength(message, {min: 5})) messages.push('Message vide / trop court.')
-
-      if (messages.length) {
-        this.$toast.error(messages)
-        return false
-      } else return true
-    },
-
-    async submitMail() {
-      try {
-        await this.$axios.$post('/api/contact', {
-          mail: this.mail,
+    sendEmail(e) {
+       this.$buefy.toast.open({
+                    message: 'Votre message a bien été envoyé!',
+                    type: 'is-success'
+                })
+     /*  if (this.recaptcha && this.token.length > 0) {
+        const { userid, templateid, serviceid } = this.$validate({
+          nom: this.nom,
+          prenom: this.prenom,
+          email: this.email,
+          sujet: this.sujet,
+          message: this.message,
         })
-        this.sent = true
-      } catch (e) {
-        console.error(e)
-      }
+        if (userid && templateid && serviceid) {
+          const templateParams = {
+            message: this.message,
+            to_email: this.mailpro,
+            from_name: this.nom,
+            subject: this.sujet,
+            nom: this.nom,
+            prenom: this.prenom,
+            email: this.email,
+          }
+          
+          emailjs.send(serviceid, templateid, templateParams, userid).then(
+            (result) => {
+               this.$buefy.toast.open({
+                    message: 'Votre message a bien été envoyé!',
+                    type: 'is-success'
+                })
+              this.clear()
+              console.log('SUCCESS!', result.status, result.text)
+            },
+            (error) => {
+              console.log('FAILED...', error)
+            }
+          )
+        }
+      } */
+    },
+
+    onError(error) {
+      console.log('Error happened:', error)
+    },
+    onExpired() {
+      console.log('Expired')
     },
     async onSubmit() {
-      if (this.validate(this.mail)) {
-        try {
-          const token = await this.$recaptcha.execute('login')
-          const config = { headers: { 'Content-Type': 'application/json' } }
-
-          /* RECAPTCHA FROM GOOGLE */
-          const response = await this.$axios.post(
-            '/api/recaptcha',
-            { token: token },
-            config
-          )
-
-          /* IF RESPONSE = 200 FROM GOOGLE TOKEN => SEND MAIL */
-          console.log(response.status)
-          if (response.status === 200) {
-            await this.submitMail()
-            if (this.sent) {
-              this.$toast.success('Message envoyé !')
-              this.clear()
-              await new Promise((resolve) => setTimeout(resolve, 2500))
-            }
-          }
-        } catch (error) {
-          console.log('Login error:', error)
-        }
+      try {
+        //const token = await this.$recaptcha.getResponse();
+        await this.$recaptcha.reset()
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log('Login error:', error)
       }
     },
-  },
-  beforeDestroy() {
-    this.$recaptcha.destroy()
+    async onSuccess(token) {
+      console.log('Succeeded')
+      this.recaptcha = true
+      this.token = token
+    },
   },
 }
 </script>
