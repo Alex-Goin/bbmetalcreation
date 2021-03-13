@@ -2,11 +2,11 @@
   <div class="container">
     <div class="columns">
       <div class="column is-half">
-        <Infos :infos="chaudronnerie" />
+        <Infos :title="chaudronnerie.title" :description="chaudronnerie.description" :contact="true" :descriptions="chaudronnerie.descriptions" :description_fin="chaudronnerie.description_fin"/>  
       </div>
 
       <div class="column is-half">
-        <Photos :banners="banners" />
+        <PhotoBuefy :photos="banners" />
       </div>
     </div>
   </div>

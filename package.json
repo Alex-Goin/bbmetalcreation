@@ -1,33 +1,22 @@
 {
-    "name": "nuxtapp",
-    "version": "1.0.0",
-    "private": true,
-    "scripts": {
-        "dev": "nuxt",
-        "build": "nuxt build",
-        "start": "nuxt start",
-        "generate": "nuxt generate"
-    },
-    "dependencies": {
-        "@nuxt/content": "^1.11.1",
-        "@nuxtjs/axios": "^5.12.5",
-        "@nuxtjs/pwa": "^3.3.5",
-        "@nuxtjs/recaptcha": "^1.0.1",
-        "@nuxtjs/toast": "^3.3.1",
-        "bulma-toast": "^2.2.0",
-        "core-js": "^3.8.3",
-        "express": "^4.17.1",
-        "nodemailer": "^6.5.0",
-        "nuxt": "^2.14.12",
-        "ohmyfetch": "^0.1.8",
-        "sass": "^1.32.8",
-        "sendmail": "^1.6.1",
-        "swiper": "^5.4.5",
-        "validator": "^13.5.2",
-        "vue-awesome-swiper": "^4.1.1",
-        "xss-filters": "^1.2.7"
-    },
-    "devDependencies": {
-        "h3": "^0.2.5"
-    }
+  "name": "bbmetalcreation",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxt/content": "^1.11.1",
+    "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/recaptcha": "^1.0.1",
+    "core-js": "^3.8.3",
+    "emailjs-com": "^2.6.4",
+    "nuxt": "^2.14.12",
+    "nuxt-buefy": "^0.4.4",
+    "validator": "^13.5.2"
+  }
 }

@@ -11,15 +11,7 @@ export const state = () => ({
     },
     header: {
         title: 'BB Metal Creation',
-        description: 'Riche de ma longue expérience en métallerie, pliage & soudure, je vous propose mes services pour vos projets.',
-        actions: [
-            'Création de mobilier métal',
-            'Chaudronnerie',
-            'Métallerie',
-            'Prestation soudure particulier et professionnel',
-            'Toutes fabrications, acier, aluminium, inox',
-            'Peinture par thermolaquage.',
-        ],
+        description: 'Riche de ma longue expérience en métallerie, pliage & soudure, je vous propose mes services pour vos projets. Création de mobilier métal, Chaudronnerie, Métallerie, Prestation soudure particulier et professionnel, Toutes fabrications, acier, aluminium, inox, Peinture par thermolaquage.',
         partenaires: [
             {
                 name: 'Mécalaser',
@@ -49,18 +41,22 @@ export const state = () => ({
         phone: '06 79 04 36 02',
         mail: 'bbmetalcreation@gmail.com',
         map: 'https://www.google.fr/maps/place/Chemin+de+Peyre+Ficade,+81290+Viviers-l%C3%A8s-Montagnes/@43.5629784,2.1850561,17z/data=!3m1!4b1!4m2!3m1!1s0x12ae13a0a6705c01:0x92d639164748edb9',
-        horaires: 'Du Lundi au Vendredi de 8h à 18h'
+        horaires: 'Du Lundi au Vendredi de 8h à 18h',
+        linkedin: "https://www.linkedin.com/in/bruno-bianchi-87482a18b/",
+        facebook: "https://www.facebook.com/bbmetalcreation/"
     },
     soudure: {
         title: 'Prestation soudure',
-        infos: "Chaudronnier soudeur avec 20 années d'expérience, MIG, TIG, ARC, intervention sur site ou en atelier, professionnel ou particulier."
+        description: "Chaudronnier soudeur avec 20 années d'expérience, MIG, TIG, ARC, intervention sur site ou en atelier, professionnel ou particulier."
     },
     mobilier: {
         title: 'Mobilier Métal',
-        infos: 'Création de mobilier Métal, Bois & Acier. Une idée, un concept: je réalise. Table, chevet, banc, étagère, ...'
+        description: 'Création de mobilier Métal, Bois & Acier. Une idée, un concept: je réalise. Table, chevet, banc, étagère, ...'
     },
     chaudronnerie: {
         title: 'Chaudronnerie',
-        infos: '...'
+        description: 'Réalisation de chaudronnerie, métallerie comme:',
+        descriptions: ['Clotûre piscine et maison','Brise vue, cache conteneur','Portillon, garde corps','Plancha inox, barbecue, hotte','...'],
+        description_fin: "Ainsi que d'autres créations selon votre projet."
     }
 })

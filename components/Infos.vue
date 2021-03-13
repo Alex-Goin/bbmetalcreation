@@ -1,23 +1,35 @@
 <template>
-  <div class="div">
-    <div class="block">
-      <div class="box is-shadowless">
-        <h1 class="is-size-2 is-uppercase has-text-weight-light">
-          {{ infos.title }}
+  <div class="block">
+    <div class="block content">
+      <div class="box is-shadowless is-radiusless">
+        <h1 class="is-size-2 has-text-weight-light has-text-centered">
+          {{ title }}
         </h1>
-        <h2 class="is-size-4 has-text-weight-light">{{ infos.infos }}</h2>
+        <blockquote class="subtitle has-text-weight-light has-text-black">
+          {{ description }}
+        <div v-if="descriptions">
+          <ul v-for="(item, index) in descriptions" :key="index">
+            <li>{{item}}</li>
+          </ul>
+        </div>
+        <div v-if="description_fin">
+          <p><br>
+          {{description_fin}}
+          </p>
+        </div>
+        </blockquote>
       </div>
     </div>
-    <div class="block">
-      <Contact />
+    <div v-if="contact" class="block">
+      <ContactBuefy />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['infos'],
-}
+  props: ["title", "description", "contact", "descriptions", 'description_fin'],
+};
 </script>
 
 <style>

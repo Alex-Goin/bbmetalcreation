@@ -5,7 +5,7 @@
         <Form />
       </div>
       <div class="column">
-        <Contact />
+        <ContactBuefy />
       </div>
     </div>
   </div>
