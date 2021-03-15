@@ -155,13 +155,14 @@ export default {
         if (user && pw) {
           const Email = this.$Email()
           const msg = `${this.nom} ${this.prenom} - ${this.email}<br /><br />${this.message}`
+          const mail_to = this.mailpro
 
           try {
             Email.send({
               Host: 'smtp.gmail.com',
               Username: user,
               Password: pw,
-              To: 'alex.goin@live.fr',
+              To: mail_to,
               From: 'bruno.bianchi.metal.creation@gmail.com',
               Subject: this.sujet,
               Body: msg
