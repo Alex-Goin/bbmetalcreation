@@ -96,13 +96,11 @@
 </template>
 
 <script>
-import emailjs from 'emailjs-com'
-
 export default {
   computed: {
     mailpro() {
       return this.$store.state.contact.mail
-    },
+    }
   },
   data() {
     return {
@@ -117,25 +115,25 @@ export default {
       checkPrenom: false,
       checkEmail: false,
       checkSujet: false,
-      checkMessage: false,
+      checkMessage: false
     }
   },
   watch: {
-    nom: function (n) {
+    nom: function(n) {
       this.checkNom = this.$isLength(n, 3)
     },
-    prenom: function (n) {
+    prenom: function(n) {
       this.checkPrenom = this.$isLength(n, 3)
     },
-    email: function (n) {
+    email: function(n) {
       this.checkEmail = this.$isEmail(n)
     },
-    sujet: function (n) {
+    sujet: function(n) {
       this.checkSujet = !this.$isEmpty(n)
     },
-    message: function (n) {
+    message: function(n) {
       this.checkMessage = this.$isLength(n, 10)
-    },
+    }
   },
   methods: {
     clear() {
@@ -147,39 +145,47 @@ export default {
     },
     sendEmail(e) {
       if (this.recaptcha && this.token.length > 0) {
-        const { userid, templateid, serviceid } = this.$validate({
+        const { user, pw } = this.$validate({
           nom: this.nom,
           prenom: this.prenom,
           email: this.email,
           sujet: this.sujet,
-          message: this.message,
+          message: this.message
         })
-        if (userid && templateid && serviceid) {
-          const templateParams = {
-            message: this.message,
-            to_email: this.mailpro,
-            from_name: this.nom,
-            subject: this.sujet,
-            nom: this.nom,
-            prenom: this.prenom,
-            email: this.email,
-          }
+        if (user && pw) {
+          const Email = this.$Email()
+          const msg = `${this.nom} ${this.prenom} - ${this.email}<br /><br />${this.message}`
 
-          emailjs.send(serviceid, templateid, templateParams, userid).then(
-            (result) => {
-              this.$buefy.toast.open({
-                message: 'Votre message a bien été envoyé!',
-                type: 'is-success',
-              })
-              this.clear()
-              console.log('SUCCESS!', result.status, result.text)
-            },
-            (error) => {
-              console.log('FAILED...', error)
-            }
-          )
+          try {
+            Email.send({
+              Host: 'smtp.gmail.com',
+              Username: user,
+              Password: pw,
+              To: 'alex.goin@live.fr',
+              From: 'bruno.bianchi.metal.creation@gmail.com',
+              Subject: this.sujet,
+              Body: msg
+            })
+          } catch (error) {
+            this.toastError(error)
+            this.clear()
+          }
+          this.toastSuccess('Message envoyé !')
+          this.clear()
         }
       }
+    },
+    toastSuccess(message) {
+      this.$buefy.toast.open({
+        message: message,
+        type: 'is-success'
+      })
+    },
+    toastError(message) {
+      this.$buefy.toast.open({
+        message: message,
+        type: 'is-danger'
+      })
     },
 
     onError(error) {
@@ -201,10 +207,9 @@ export default {
       console.log('Succeeded')
       this.recaptcha = true
       this.token = token
-    },
-  },
+    }
+  }
 }
 </script>
 
-<style>
-</style>
+<style></style>
